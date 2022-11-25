@@ -1,6 +1,4 @@
-﻿//Создать массив из 5 элементов следующей структуры: фамилия, возраст, адрес (улица, номер дома, номер квартиры), должность.
-//Вывести на экран список молодежи не старше 20 лет с указанием места работы,
-//затем отдельно вывести  список работников с фамилией Иванов с указанием адреса
+﻿//
 #include <cstdio>
 #include <cmath>
 #include <iostream>
@@ -13,61 +11,66 @@
 using namespace std;
 struct adress
 {
+	char town[20];
 	char street[20];
 	int house;
 	int flat;
 };
-struct man
+struct worker
 {
 	char fam[15];
-	int old;
+	char name[20];
+	int age;
+	char gender[15];
 	struct adress adr;
-	char work[15];
+	char post[20];
 };
 int main()
 {
 	system("chcp 1251");
 	system("cls");
-	int i, k = 0;
-	struct man list[5] =
+	int i, count = 0, count_1 = 0, max_age = 0;
+	char input_post[20], post_1;
+	struct worker list[5] =
 	{
-	"Иванов" ,24 ,"Мира", 12, 33, "вахтёр",
-	"Петров", 18, "Ленина", 44, 1, "менеджер",
-	"Сидоров", 45, "Мазая", 65, 32, "директор",
-	"Анохина", 19, "Фрунзе", 13, 46, "бухгалтер",
-	"Усова", 30, "Фучика", 33, 22, "кассир"
+	"Иван" , "Иванов", 24, "мужчина", "Орск", "ленина",  12, 33, "Уборщик",
+	"Абдула" , "Епифанцев", 15, "мужчина", "Орск", "ленина",  12, 33, "Директор",
+	"Мария" , "Петрова", 21, "женщина", "Орск", "ленина",  12, 33, "Секретарша",
+	"Михаил" , "Круг", 95, "мужчина", "Орск", "ленина",  12, 33, "Продюссер",
+	"Пётр" , "Ишмурзин", 14, "мужчина", "Орск", "ленина",  12, 33, "Уборщик",
 	};
 	cout << "Список сотрудников: " << endl;
+
 	for (i = 0; i < 5; i++)
 	{
-		cout << list[i].fam << list[i].old << list[i].adr.street << list[i].adr.house << list[i].adr.flat << list[i].work << endl;
-	}
-	cout << "Молодёжь: " << endl;
-	for (i = 0; i < 5; i++)
-	{
-		if (list[i].old <= 20)
+		cout << setw(10) << list[i].name << " " << list[i].fam << " " << list[i].age << " " << list[i].gender << " " << list[i].adr.town << " " << list[i].adr.street << " " << list[i].adr.house << " " << list[i].adr.flat << " " << list[i].post << endl;
+		count += list[i].age;
+		if (list[i].age > max_age)
 		{
-			k++;
-			cout << list[i].fam << list[i].old << list[i].work << endl;
+			max_age = list[i].age;
 		}
 	}
-	if (k == 0)
-	{
-		cout << "Данных не найдено" << endl;
-	}
-	cout << "Список ивановых: " << endl;
-	k = 0;
+	count = count / i;
+	cout << "Средний возраст: " << count << endl;
 	for (i = 0; i < 5; i++)
 	{
-		if (strcmp(list[i].fam, "Иванов") == 0)
+		if (max_age == list[i].age)
 		{
-			k++;
-			cout << list[i].fam << list[i].adr.street << list[i].adr.house << list[i].adr.flat << endl;
+			cout << "Старший сотрудник: " << list[i].name << " " << list[i].fam << " " << list[i].age << endl;
+		}
+
+	}
+	cout << "Введиите должность: " << endl;
+	cin.getline(input_post, 20);
+
+	for (i = 0; i < 6; i++)
+	{
+		if (strcmp(list[i].post, input_post) == 0)
+		{
+			count_1 += 1;
 		}
 	}
-	if (k == 0)
-	{
-		cout << "Данных не найдено";
-	}
+	cout << "Количество сотрудников занимающих должность, введённую пользователем с клавиатуры: " << count_1;
+
 
 }
