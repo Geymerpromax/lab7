@@ -43,7 +43,7 @@ int main()
 
 	for (i = 0; i < 5; i++)
 	{
-		cout << setw(10) << list[i].name << " " << list[i].fam << " " << list[i].age << " " << list[i].gender << " " << list[i].adr.town << " " << list[i].adr.street << " " << list[i].adr.house << " " << list[i].adr.flat << " " << list[i].post << endl;
+		cout << list[i].name << " " << list[i].fam << " " << list[i].age << " " << list[i].gender << " " << list[i].adr.town << " " << list[i].adr.street << " " << list[i].adr.house << " " << list[i].adr.flat << " " << list[i].post << endl;
 		count += list[i].age;
 		if (list[i].age > max_age)
 		{
@@ -62,8 +62,7 @@ int main()
 	}
 	cout << "Введиите должность: " << endl;
 	cin.getline(input_post, 20);
-
-	for (i = 0; i < 6; i++)
+	for (i = 0; i < 5; i++)
 	{
 		if (strcmp(list[i].post, input_post) == 0)
 		{
