@@ -9,29 +9,33 @@
 #include <cstring>
 #include <iomanip>
 using namespace std;
-struct adress
+class adress
 {
-	char town[20];
-	char street[20];
+public:
+	string town;
+	string street;
 	int house;
 	int flat;
 };
-struct worker
+class worker
 {
-	char fam[15];
-	char name[20];
+public:
+	string fam;
+	string name;
 	int age;
-	char gender[15];
-	struct adress adr;
-	char post[20];
+	string gender;
+	class adress adr;
+	string post;
 };
 int main()
 {
 	system("chcp 1251");
 	system("cls");
 	int i, count = 0, count_1 = 0, max_age = 0;
-	char input_post[20];
-	struct worker list[5] =
+
+	string input_post;
+
+	worker list[5] =
 	{
 	"Иван", "Иванов", 24, "мужчина", "Орск", "ленина",  12, 33, "Уборщик",
 	"Абдула", "Епифанцев", 15, "мужчина", "Орск", "ленина",  12, 33, "Директор",
@@ -39,6 +43,7 @@ int main()
 	"Михаил", "Круг", 95, "мужчина", "Орск", "ленина",  12, 33, "Продюссер",
 	"Пётр", "Ишмурзин", 14, "мужчина", "Орск", "ленина",  12, 33, "Уборщик",
 	};
+
 	cout << "Список сотрудников: " << endl;
 
 	for (i = 0; i < 5; i++)
@@ -56,20 +61,20 @@ int main()
 	{
 		if (max_age == list[i].age)
 		{
-			cout << "Старший сотрудник: " << list[i].name << " " << list[i].fam << " " << list[i].age << endl;
+			cout << "Старший сотрудник: " << list[i].name << " " << list[i].fam  << endl;
 		}
 
 	}
 	cout << "Введиите должность: " << endl;
-	cin.getline(input_post, 20);
+	cin >> input_post;
 	for (i = 0; i < 5; i++)
 	{
-		if (strcmp(list[i].post, input_post) == 0)
+		if (list[i].post == input_post)
 		{
 			count_1 += 1;
 		}
 	}
 	cout << "Количество сотрудников занимающих должность, введённую пользователем с клавиатуры: " << count_1;
-
+	
 
 }
